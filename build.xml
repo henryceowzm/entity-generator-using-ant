@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<project default="main" basedir=".">
+
+	<echo message="Use ant task and hibernate tools to generate annotated entity files" />
+	<property name="sourceGenerationBaseDir"  location="${basedir}/src/main/java" />
+	<property name="sourceGenerationPackage"  value="entity" />
+	
+	<path id="toolslib">
+		<fileset dir="${basedir}/lib">
+			<include name="*.jar" />
+		</fileset>
+		<!-- Include customized ReverseEngineeringStrategy implementation in the classpath like this if any.
+		<path location="${basedir}/src/fwk/CustomizedReverseEngineeringStrategy.java" />
+		!-->
+	</path>
+
+	<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="toolslib" />
+
+	<taskdef name="javaformatter" classname="org.hibernate.tool.ant.JavaFormatterTask" classpathref="toolslib"/>
+
+	<target name="format" description="format java code to google style">
+		<javaformatter configurationfile="${basedir}/config/org.eclipse.jdt.core.prefs">
+			<fileset dir="${sourceGenerationBaseDir}/${sourceGenerationPackage}">
+				<include name="*.java"/>
+			</fileset>
+		</javaformatter>
+	</target>
+	
+	<target name="clean" description="clean up folder which source code is going to be generated in">
+		<delete dir="${sourceGenerationBaseDir}/${sourceGenerationPackage}" />
+	</target>
+	
+	<target name="main" depends="clean">
+		<hibernatetool destdir="${sourceGenerationBaseDir}">
+			<jdbcconfiguration configurationfile="${basedir}/config/hibernate.cfg.xml" packagename="${sourceGenerationPackage}" />
+			<!--
+			<hbm2java jdk5="true" ejb3="true" />
+			-->
+			<hbmtemplate templateprefix="pojo/" template="pojo/Pojo.ftl" filepattern="{package-name}/{class-name}.java">
+				<property key="jdk5" value="true"/>
+				<property key="ejb3" value="true"/>
+			</hbmtemplate>	
+			
+		</hibernatetool>
+	</target>
+
+</project>
