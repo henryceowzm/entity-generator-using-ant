@@ -27,7 +27,9 @@ ant
 
 ## Prameters to tweak in build.xml
 sourceGenerationBaseDir defaults to src/main/java
+
 sourceGenerationPackage defaults to entity
+
 Files will be generated under sourceGenerationBaseDir/sourceGenerationPackage with package being sourceGenerationPackage
 
 ## Format generated java source code
