@@ -19,7 +19,7 @@ cd entity-generator-using-ant
 mvn compile
 ```
 
-## Build
+## Build to generate java source code
 
 ```
 ant 
@@ -30,6 +30,10 @@ ant
 ```
 ant format
 ```
+
+## Useful links
+[hibernate tools documentation](http://docs.jboss.org/tools/latest/en/hibernatetools/html/ant.html#d0e4028)
+[create config file for the formatter](http://www.peterfriese.de/formatting-your-code-using-the-eclipse-code-formatter/)
 
 # License
 
