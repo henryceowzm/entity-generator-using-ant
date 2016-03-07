@@ -12,7 +12,7 @@ The project requires at least JDK 7, mysql, Ant, and Maven 3.0.
 ## Installation
 
 Installation with Maven:
-This will comple all dependencies to the lib folder.
+This will compile and copy all dependencies to the lib folder.
 ```
 git clone https://github.com/henryceowzm/entity-generator-using-ant.git
 cd entity-generator-using-ant
